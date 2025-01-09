@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>거래내역 분석 서비스</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>거래내역 분석 서비스</h1>
+        
+        <div class="info-text">
+            📋 PDF 형식의 은행 거래내역서를 Excel 파일로 변환해드립니다.
+        </div>
+
+        <div class="upload-area" id="upload-area">
+            <h2>파일 업로드</h2>
+            <p>PDF 파일을 드래그하여 놓거나 클릭하여 선택하세요</p>
+            <input type="file" id="file-input" class="file-input" accept=".pdf">
+        </div>
+
+        <div class="settings-area">
+            <div class="form-group">
+                <label for="price-range">거래금액 범위 선택</label>
+                <select id="price-range">
+                    <option value="3.5">300,000원 ~ 500,000원</option>
+                    <option value="5.10">500,000원 ~ 1,000,000원</option>
+                    <option value="10.0">1,000,000원 이상</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="start-keyword">시작 키워드</label>
+                <input type="text" 
+                       id="start-keyword" 
+                       placeholder="예: 거래일시, 순번 등"
+                       title="엑셀 변환 시 시작할 키워드를 입력하세요">
+            </div>
+        </div>
+
+        <div id="file-list" class="file-list"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
