@@ -43,3 +43,11 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'net.yyhis.transact_analyze.TransactAnalyzeApplication'
+        )
+    }
+}
