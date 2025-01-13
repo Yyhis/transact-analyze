@@ -22,11 +22,11 @@ import org.json.JSONObject;
 @Service
 public class ClovaOcrService {
 
-    @Value("${clova.ocr.api.secret}")
-    private static String secretKey;
+    // @Value("${clova.ocr.api.secret}")
+    private static String secretKey="dGZIUlRwY0pNc0dTcWFPSE9hamVqRndJeXZ2cHRxRlc=";
 
-    @Value("${clova.ocr.api.url}")
-    private String apiURL;
+    // @Value("${clova.ocr.api.url}")
+    private String apiURL="https://0e6ryat0i0.apigw.ntruss.com/custom/v1/34340/86d895995d846e7cc775e0b649e415222de5ffd8ac365d08111fb4e6d38292db/general";
 
     @Autowired
     PriceRange listFillter;
@@ -38,8 +38,11 @@ public class ClovaOcrService {
 
         byte[] buffer = Files.readAllBytes(pdfFile.toPath());
 
+        System.out.println("buffer: " + buffer);
+
         try {
             URL url = new URL(apiURL);
+            System.out.println("url: " + url);
             HttpURLConnection connection = createRequestHeader(url);
             JSONObject requestBody = createRequestBody(buffer);
 
@@ -47,7 +50,7 @@ public class ClovaOcrService {
 
             return response;
         } catch (Exception e) {
-            System.out.println(e);
+            System.err.println(e);
         }
         return null;
     }
@@ -57,7 +60,7 @@ public class ClovaOcrService {
         connection.setUseCaches(false);
         connection.setDoInput(true);
         connection.setDoOutput(true);
-        connection.setReadTimeout(35000);
+        connection.setReadTimeout(50000);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
         connection.setRequestProperty("X-OCR-SECRET", secretKey);
